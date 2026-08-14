@@ -11,14 +11,20 @@ let pontoAtivoId = null;
 /* -------------------------- mapa ----------------------------------------- */
 const mapa = L.map("mapa", { zoomControl: true }).setView([-22.6, -55.4], 6);
 
-const camadaMapaBase = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  maxZoom: 19, attribution: "&copy; colaboradores do OpenStreetMap"
-});
-const camadaTerreno = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
-  maxZoom: 19, maxNativeZoom: 17,
-  attribution: "&copy; colaboradores do OpenStreetMap &middot; SRTM | mapa: &copy; OpenTopoMap (CC-BY-SA)"
-});
-camadaMapaBase.addTo(mapa);
+const camadasBase = {
+  mapa: L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19, attribution: "&copy; colaboradores do OpenStreetMap"
+  }),
+  terreno: L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19, maxNativeZoom: 17,
+    attribution: "&copy; colaboradores do OpenStreetMap &middot; SRTM | mapa: &copy; OpenTopoMap (CC-BY-SA)"
+  }),
+  satelite: L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+    maxZoom: 19,
+    attribution: "Tiles &copy; Esri &mdash; Source: Esri, Maxar, Earthstar Geographics, and the GIS User Community"
+  })
+};
+camadasBase.mapa.addTo(mapa);
 camadaMarcadores.addTo(mapa);
 
 document.querySelectorAll(".camada-btn").forEach(btn => {
@@ -26,13 +32,8 @@ document.querySelectorAll(".camada-btn").forEach(btn => {
     if (btn.classList.contains("ativa")) return;
     document.querySelectorAll(".camada-btn").forEach(b => b.classList.remove("ativa"));
     btn.classList.add("ativa");
-    if (btn.dataset.camada === "terreno") {
-      mapa.removeLayer(camadaMapaBase);
-      camadaTerreno.addTo(mapa);
-    } else {
-      mapa.removeLayer(camadaTerreno);
-      camadaMapaBase.addTo(mapa);
-    }
+    Object.values(camadasBase).forEach(camada => mapa.removeLayer(camada));
+    camadasBase[btn.dataset.camada].addTo(mapa);
   });
 });
 
