@@ -1,12 +1,13 @@
 # Pontos Históricos · 4ª Bda C Mec (Guaicurus)
 
-Site **somente leitura** para consultar os pontos históricos das OM da 4ª Brigada
-de Cavalaria Mecanizada em um mapa interativo, com filtro por unidade e categoria,
-busca, dossiê com fotos e **links úteis**.
+Site **estático e somente leitura** para consultar os pontos históricos das OM da
+4ª Brigada de Cavalaria Mecanizada em um mapa interativo, com filtro por unidade e
+categoria, busca, dossiê com fotos e **links úteis**.
 
-Não há edição pelo navegador: todas as alterações são feitas por **issue** ou
-**pull request** no GitHub (ver [Como contribuir](#3-como-contribuir)). Assim o
-acervo fica versionado e auditável — dá para saber quem alterou o quê e por quê.
+Não há edição pelo navegador nem fluxo de issue/pull request. Correções, novos
+pontos ou fotos são enviados por email para a **Comunicação Social da 4ª Bda C Mec**
+(ver [Como contribuir](#3-como-contribuir)) e incorporados ao arquivo da unidade por
+quem administra o repositório.
 
 Funciona de dois modos, sem servidor:
 - **Local:** dois cliques no `index.html`.
@@ -17,7 +18,7 @@ Funciona de dois modos, sem servidor:
 ## Sumário
 1. [Como usar](#1-como-usar)
 2. [Arquitetura do projeto](#2-arquitetura-do-projeto)
-3. [Como contribuir (issues e pull requests)](#3-como-contribuir)
+3. [Como contribuir (por email)](#3-como-contribuir)
 4. [Esquema de um ponto e onde editar](#4-esquema-de-um-ponto-e-onde-editar)
 5. [Fotos](#5-fotos)
 6. [Links úteis](#6-links-uteis)
@@ -32,9 +33,12 @@ Funciona de dois modos, sem servidor:
 - Filtre por **Unidade** e **Categoria** ou use a **busca**.
 - Clique num item da lista → o mapa voa até o ponto e abre o **dossiê**.
 - Clique num marcador → botão “Ver dossiê”.
-- No dossiê: ficha, fotos (com ampliação), descrição, **links úteis** e fontes,
-  além do botão **Sugerir correção deste ponto**.
+- No dossiê: ficha, fotos (clique para ampliar; feche com o **X** ou clicando fora),
+  descrição, **links úteis** e fontes.
 - Na lateral, a seção **Links úteis** reúne referências gerais.
+- No celular, use o botão de **menu (☰)** no topo para abrir a lista/filtros; o
+  mapa ocupa a tela toda.
+- Site 100% estático (sem edição pelo navegador).
 
 ---
 
@@ -47,7 +51,7 @@ pontos-historicos-guaicurus/
 │   └── style.css                  → identidade visual e layout
 ├── js/
 │   ├── dados/
-│   │   ├── config.js              → REPOSITORIO, UNIDADES, LINKS_UTEIS, PONTOS = []
+│   │   ├── config.js              → UNIDADES, LINKS_UTEIS, PONTOS = []
 │   │   ├── pontos-3bia-aaae.js    → pontos da 3ª Bia AAAe
 │   │   ├── pontos-10rc-mec.js     → pontos do 10º RC Mec
 │   │   ├── pontos-11rc-mec.js     → pontos do 11º RC Mec
@@ -55,12 +59,9 @@ pontos-historicos-guaicurus/
 │   │   └── _MODELO-PONTO.txt      → modelo para copiar/colar
 │   └── app.js                     → mapa, filtros e dossiê (somente leitura)
 ├── assets/
-│   └── fotos/<unidade>/           → imagens de cada unidade
-├── .github/
-│   ├── ISSUE_TEMPLATE/            → formulários de "adicionar" e "corrigir"
-│   └── PULL_REQUEST_TEMPLATE.md
+│   ├── fotos/<unidade>/           → imagens de cada unidade
+│   └── logo/                      → brasão exibido no cabeçalho
 ├── .nojekyll                      → evita o Jekyll ignorar arquivos (GitHub Pages)
-├── CONTRIBUTING.md                → guia de contribuição
 └── README.md
 ```
 
@@ -70,39 +71,25 @@ merge e mais fácil de revisar. São `<script>` encadeados (config primeiro, dep
 os pontos, depois o app), então **não usam `fetch`** e a página abre tanto por
 duplo-clique quanto no GitHub Pages, sem mudar nada.
 
-> **Ao clonar/publicar, ajuste uma linha:** em `js/dados/config.js`, troque
-> `REPOSITORIO` pelo endereço real do seu repositório. É isso que faz os botões
-> **Sugerir alteração**, **Adicionar ponto** e **Sugerir correção** apontarem para
-> os formulários de issue certos.
-
 ---
 
 ## 3. Como contribuir
 
-Há dois caminhos. Escolha conforme o seu conforto com o GitHub.
+O site não tem botões de sugestão nem fluxo de issue/pull request — é estático e
+somente leitura. Para **adicionar um ponto novo**, **corrigir uma informação** ou
+**enviar fotos**, escreva para a Comunicação Social da 4ª Bda C Mec:
 
-### A) Por issue (mais simples — não precisa editar arquivo)
-Use quando quiser **sugerir** algo e deixar o commit para quem administra.
-1. Clique em **+ Adicionar ponto** (novo ponto) ou **Sugerir correção deste ponto**
-   (dentro do dossiê), ou **Sugerir alteração** (lista de issues), no topo do site.
-2. O GitHub abre um **formulário** (campos de nome, unidade, coordenada, descrição,
-   fontes, links, fotos). Preencha e envie.
-3. Um mantenedor transfere os dados para o arquivo da unidade e faz o commit.
+**📧 4bdacmec@gmail.com**
 
-### B) Por pull request (para quem edita direto)
-Use quando quiser **já entregar a alteração pronta**.
-1. Faça um *fork* do repositório (botão **Fork**).
-2. Edite o arquivo da unidade em `js/dados/` (ex.: `pontos-10rc-mec.js`),
-   seguindo o modelo de `js/dados/_MODELO-PONTO.txt`.
-3. Se houver fotos, coloque-as em `assets/fotos/<unidade>/` com os nomes usados
-   no campo `fotos`.
-4. Abra um **Pull Request**. O modelo de PR traz um checklist.
+Inclua no email:
+- Nome do ponto e a unidade (3ª Bia AAAe, 10º, 11º ou 17º RC Mec).
+- Cidade, endereço e coordenadas (se souber), ou uma localização aproximada.
+- Descrição, período/evento e fontes.
+- Fotos em anexo (se houver).
 
-> Detalhes e boas práticas em **CONTRIBUTING.md** (o GitHub mostra esse guia
-> automaticamente ao abrir issues e PRs).
-
-**Fluxo mental:** o site é a vitrine (leitura); o **GitHub é a redação** (onde se
-propõe e se aprova a mudança). Nada é gravado no navegador de quem consulta.
+Quem administra o repositório transfere as informações para o arquivo da unidade
+em `js/dados/` (seguindo o modelo de `js/dados/_MODELO-PONTO.txt`), salva as fotos
+em `assets/fotos/<unidade>/` e faz o commit/publica a atualização.
 
 ---
 
@@ -157,7 +144,9 @@ Existem em dois níveis:
 
 - **11º** e **17º RC Mec** têm coordenada oficial (`exata`).
 - **Bela Vista (10º)**, alguns marcos rurais e Cerro Corá estão como `aproximada`
-  (selo âmbar e marcador tracejado) — para ajustar em campo via issue/PR.
+  no campo `precisao` — para ajustar em campo, envie a coordenada correta por
+  email (ver [Como contribuir](#3-como-contribuir)). O site não exibe mais essa
+  informação visualmente; ela fica só nos dados, para controle interno.
 
 ---
 
@@ -165,9 +154,8 @@ Existem em dois níveis:
 
 **Subir os arquivos**
 1. Crie um repositório (ex.: `pontos-historicos-guaicurus`).
-2. Ajuste `REPOSITORIO` em `js/dados/config.js`.
-3. Suba **o conteúdo desta pasta na raiz** do repositório (mantendo `index.html`,
-   `css/`, `js/`, `assets/`, `.github/`, `.nojekyll`). Pelo site: *Add file →
+2. Suba **o conteúdo desta pasta na raiz** do repositório (mantendo `index.html`,
+   `css/`, `js/`, `assets/`, `.nojekyll`). Pelo site: *Add file →
    Upload files*; ou por linha de comando:
    ```bash
    git init && git add . && git commit -m "Pontos historicos - 4a Bda C Mec"
@@ -184,9 +172,9 @@ Existem em dois níveis:
 Todos os caminhos são **relativos**, então a página funciona igual na raiz ou em
 subpasta. O `.nojekyll` evita que o GitHub ignore arquivos iniciados por `_`.
 
-**Atualizar o conteúdo publicado:** cada issue/PR aprovado vira um commit; o Pages
-reconstrói sozinho. Visitantes só consultam — quem altera os dados é quem tem
-permissão de commit.
+**Atualizar o conteúdo publicado:** cada correção/adição recebida por email vira um
+commit de quem administra o repositório; o Pages reconstrói sozinho. Visitantes só
+consultam — quem altera os dados é quem tem permissão de commit.
 
 ---
 

@@ -2,4 +2,5 @@ Coloque aqui as fotos da 3ª Bia AAAe com estes nomes exatos:
   cemiterio-soldado-01.jpg
   cemiterio-soldado-02.jpg
   cemiterio-soldado-03.jpg
+  cemiterio-soldado-04.jpg
 (Os nomes esperados aparecem no painel de detalhe enquanto a foto não existe.)

@@ -1,10 +1,6 @@
 /* =============================================================================
-   PONTOS HISTÓRICOS · 4ª Bda C Mec (Guaicurus)  |  app.js  (somente leitura)
-   Depende de: Leaflet (CDN) e js/dados/*.js (REPOSITORIO, UNIDADES, LINKS_UTEIS, PONTOS)
-
-   Este site NÃO edita dados. Alterações são feitas por issues ou pull requests
-   no GitHub (ver README). Os botões "Sugerir alteração" e "Adicionar ponto"
-   abrem os formulários de issue do repositório.
+   PONTOS HISTÓRICOS · 4ª Bda C Mec (Guaicurus)  |  app.js  (site estático)
+   Depende de: Leaflet (CDN) e js/dados/*.js (UNIDADES, LINKS_UTEIS, PONTOS)
    ========================================================================== */
 
 const estado = { unidades: new Set(Object.keys(UNIDADES)), categoria: "", busca: "" };
@@ -19,17 +15,17 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
 }).addTo(mapa);
 camadaMarcadores.addTo(mapa);
 
-function iconeUnidade(unidadeKey, aproximado) {
+function iconeUnidade(unidadeKey) {
   const cor = (UNIDADES[unidadeKey] || {}).cor || "#666";
   return L.divIcon({
     className: "",
-    html: `<div class="marcador ${aproximado ? "aproximado" : ""}" style="background:${cor}"></div>`,
+    html: `<div class="marcador" style="background:${cor}"></div>`,
     iconSize: [22, 22], iconAnchor: [11, 22], popupAnchor: [0, -20]
   });
 }
 
 PONTOS.forEach(p => {
-  const m = L.marker([p.lat, p.lng], { icon: iconeUnidade(p.unidade, p.precisao === "aproximada") });
+  const m = L.marker([p.lat, p.lng], { icon: iconeUnidade(p.unidade) });
   m.bindPopup(
     `<div class="popup-titulo">${escapar(p.nome)}</div>` +
     `<div class="popup-local">${escapar(p.cidade)}</div>` +
@@ -75,13 +71,11 @@ function renderLista(visiveis) {
   }
   lista.innerHTML = visiveis.map(p => {
     const u = UNIDADES[p.unidade] || { rotulo: p.unidade, cor: "#666" };
-    const aprox = p.precisao === "aproximada"
-      ? `<span class="aprox" title="Coordenada aproximada — verificar">aprox.</span>` : "";
     return (
       `<button class="item ${p.id === pontoAtivoId ? "ativo" : ""}" data-id="${p.id}">` +
         `<div class="titulo">${escapar(p.nome)}</div>` +
         `<div class="meta"><span class="tag-unidade" style="background:${u.cor}">${escapar(u.rotulo)}</span>` +
-        `<span>${escapar(p.cidade)}</span>${aprox}</div>` +
+        `<span>${escapar(p.cidade)}</span></div>` +
       `</button>`
     );
   }).join("");
@@ -99,6 +93,7 @@ function selecionarItem(id, voarAte) {
     setTimeout(() => marcadores[p.id] && marcadores[p.id].openPopup(), 850);
   }
   abrirDetalhe(id);
+  fecharMenu();
 }
 
 function abrirDetalhe(id) {
@@ -111,13 +106,12 @@ function abrirDetalhe(id) {
   document.querySelector(".detalhe h2").textContent = p.nome;
   document.querySelector(".detalhe .local").textContent = p.cidade;
 
-  const precisaoSelo = `<span class="selo-precisao ${p.precisao}">${p.precisao}</span>`;
   const linkMapa = `<a href="https://www.google.com/maps?q=${p.lat},${p.lng}" target="_blank" rel="noopener">abrir no Google Maps</a>`;
   document.querySelector(".detalhe .ficha").innerHTML =
     linha("Categoria", escapar(p.categoria)) +
     linha("Período", escapar(p.periodo)) +
     linha("Endereço", escapar(p.endereco)) +
-    linha("Coordenadas", `${(+p.lat).toFixed(5)}, ${(+p.lng).toFixed(5)} ${precisaoSelo}<br>${linkMapa}`);
+    linha("Coordenadas", `${(+p.lat).toFixed(5)}, ${(+p.lng).toFixed(5)}<br>${linkMapa}`);
 
   renderGaleria(p);
   document.querySelector(".detalhe .descricao").textContent = p.descricao;
@@ -132,9 +126,6 @@ function abrirDetalhe(id) {
   } else { blocoLinks.innerHTML = ""; }
 
   document.querySelector(".detalhe .fontes").innerHTML = `<b>Fontes:</b> ${escapar(p.fontes || "—")}`;
-
-  // botão de sugerir correção deste ponto (abre issue já intitulada)
-  document.getElementById("btn-sugerir-correcao").href = urlIssueCorrigir(p);
 
   document.querySelector(".detalhe").classList.add("aberto");
   document.querySelectorAll(".item").forEach(el => el.classList.toggle("ativo", el.dataset.id === id));
@@ -173,16 +164,10 @@ function abrirLightbox(src) {
   const lb = document.getElementById("lightbox");
   lb.querySelector("img").src = src; lb.classList.add("aberto");
 }
-document.getElementById("lightbox").addEventListener("click", () =>
-  document.getElementById("lightbox").classList.remove("aberto"));
-
-/* -------------------------- contribuição (GitHub) ------------------------ */
-function urlIssues() { return `${REPOSITORIO}/issues`; }
-function urlIssueNovoPonto() { return `${REPOSITORIO}/issues/new?template=adicionar-ponto.yml`; }
-function urlIssueCorrigir(p) {
-  const titulo = encodeURIComponent(`[Correção] ${p.nome}`);
-  return `${REPOSITORIO}/issues/new?template=corrigir-ponto.yml&title=${titulo}`;
-}
+function fecharLightbox() { document.getElementById("lightbox").classList.remove("aberto"); }
+document.getElementById("lightbox").addEventListener("click", fecharLightbox);
+document.getElementById("lightbox").querySelector("img").addEventListener("click", e => e.stopPropagation());
+document.getElementById("lightbox-fechar").addEventListener("click", fecharLightbox);
 
 /* -------------------------- filtros / legenda / links -------------------- */
 function montarFiltroUnidades() {
@@ -219,8 +204,7 @@ function montarLegenda() {
   const box = document.querySelector(".legenda .corpo-legenda");
   box.innerHTML = Object.values(UNIDADES).map(u =>
     `<div class="linha-legenda"><span class="selo" style="background:${u.cor}"></span>${u.rotulo}</div>`
-  ).join("") +
-  `<div class="linha-legenda" style="margin-top:6px"><span class="marcador aproximado" style="background:#999;width:11px;height:11px;transform:none;border-radius:3px"></span>marco aproximado</div>`;
+  ).join("");
 }
 
 function montarLinksUteis() {
@@ -254,10 +238,31 @@ function escapar(s) {
 document.getElementById("busca").addEventListener("input", e => { estado.busca = e.target.value; aplicarFiltros(); });
 document.getElementById("btn-enquadrar").addEventListener("click", enquadrarTudo);
 document.querySelector(".detalhe .fechar").addEventListener("click", fecharDetalhe);
-document.addEventListener("keydown", e => { if (e.key === "Escape") fecharDetalhe(); });
+document.addEventListener("keydown", e => {
+  if (e.key !== "Escape") return;
+  fecharLightbox();
+  fecharDetalhe();
+  fecharMenu();
+});
 
-document.getElementById("btn-sugerir").href = urlIssues();
-document.getElementById("btn-adicionar").href = urlIssueNovoPonto();
+/* -------------------------- menu hambúrguer (mobile) --------------------- */
+const lateralEl = document.getElementById("lateral");
+const fundoLateralEl = document.getElementById("fundo-lateral");
+const btnHamburguerEl = document.getElementById("btn-hamburguer");
+
+function abrirMenu() {
+  lateralEl.classList.add("aberta");
+  fundoLateralEl.classList.add("aberto");
+  btnHamburguerEl.setAttribute("aria-expanded", "true");
+}
+function fecharMenu() {
+  lateralEl.classList.remove("aberta");
+  fundoLateralEl.classList.remove("aberto");
+  btnHamburguerEl.setAttribute("aria-expanded", "false");
+}
+btnHamburguerEl.addEventListener("click", () =>
+  lateralEl.classList.contains("aberta") ? fecharMenu() : abrirMenu());
+fundoLateralEl.addEventListener("click", fecharMenu);
 
 /* -------------------------- start ---------------------------------------- */
 montarFiltroUnidades();

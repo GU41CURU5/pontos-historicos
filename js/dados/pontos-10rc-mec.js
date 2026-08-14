@@ -18,7 +18,8 @@ PONTOS.push(
     links: [],
     fotos: [
       "assets/fotos/10rc-mec/nhandipa-01.jpg",
-      "assets/fotos/10rc-mec/nhandipa-02.jpg"
+      "assets/fotos/10rc-mec/nhandipa-02.jpg",
+      "assets/fotos/10rc-mec/nhandipa-03.jpg"
     ]
   },
   {

@@ -20,7 +20,8 @@ PONTOS.push(
     fotos: [
       "assets/fotos/3bia-aaae/cemiterio-soldado-01.jpg",
       "assets/fotos/3bia-aaae/cemiterio-soldado-02.jpg",
-      "assets/fotos/3bia-aaae/cemiterio-soldado-03.jpg"
+      "assets/fotos/3bia-aaae/cemiterio-soldado-03.jpg",
+      "assets/fotos/3bia-aaae/cemiterio-soldado-04.jpg"
     ]
   }
 );

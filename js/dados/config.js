@@ -5,10 +5,6 @@
    Este arquivo é carregado ANTES dos arquivos de pontos e do app.
    ========================================================================== */
 
-/* Endereço do repositório no GitHub. AJUSTE após criar o repositório:
-   é o que faz os botões "Sugerir alteração" e "Adicionar ponto" funcionarem. */
-const REPOSITORIO = "https://github.com/SEU-USUARIO/pontos-historicos-guaicurus";
-
 /* Unidades (aparecem no filtro e na legenda).
    pasta = subpasta em assets/fotos onde ficam as imagens da unidade. */
 const UNIDADES = {

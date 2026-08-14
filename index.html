@@ -21,19 +21,26 @@
   <div class="app">
 
     <header class="topo">
-      <div class="brasao">4ª</div>
+      <button class="hamburguer" id="btn-hamburguer" title="Abrir menu" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="brasao-wrap">
+        <span class="brasao-fallback">4ª</span>
+        <img class="brasao" src="assets/logo/brasao-4bdacmec.png" alt="Brasão da 4ª Brigada de Cavalaria Mecanizada"
+             onerror="this.style.display='none'">
+      </div>
       <div>
         <h1>Pontos Históricos</h1>
         <div class="sub">4ª Brigada de Cavalaria Mecanizada &middot; Guaicurus</div>
       </div>
       <div class="direita">
         <div class="contador">Pontos no mapa: <b id="contador-total">0</b></div>
-        <a class="btn" id="btn-sugerir" href="#" target="_blank" rel="noopener">Sugerir alteração</a>
-        <a class="btn destaque" id="btn-adicionar" href="#" target="_blank" rel="noopener">+ Adicionar ponto</a>
       </div>
     </header>
 
-    <aside class="lateral">
+    <div class="fundo-lateral" id="fundo-lateral"></div>
+
+    <aside class="lateral" id="lateral">
       <div class="filtros">
         <p class="rotulo-secao">Buscar</p>
         <input type="text" id="busca" class="busca" placeholder="Nome, cidade, período, palavra-chave…">
@@ -50,10 +57,6 @@
           <summary>Links úteis</summary>
           <ul id="links-uteis"><!-- gerado por app.js --></ul>
         </details>
-        <p class="aviso-leitura">
-          Site somente leitura. Para adicionar ou corrigir informações, use os botões
-          <b>Sugerir alteração</b> / <b>Adicionar ponto</b> (issues no GitHub) ou envie um pull request.
-        </p>
       </div>
     </aside>
 
@@ -82,17 +85,22 @@
           <p class="descricao"></p>
           <div class="bloco-links"></div>
           <p class="fontes"></p>
-          <div class="detalhe-rodape">
-            <a class="btn-sugerir" id="btn-sugerir-correcao" href="#" target="_blank" rel="noopener">Sugerir correção deste ponto</a>
-            <p class="dica-rodape">Abre uma issue no GitHub já intitulada com o nome do ponto.</p>
-          </div>
         </div>
       </section>
     </main>
 
   </div>
 
-  <div class="lightbox" id="lightbox"><img src="" alt="Foto ampliada"></div>
+  <footer class="rodape-site">
+    <p>Comunicação Social &middot; 4ª Brigada de Cavalaria Mecanizada &mdash; contato:
+      <a href="mailto:4bdacmec@gmail.com">4bdacmec@gmail.com</a>
+    </p>
+  </footer>
+
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-fechar" id="lightbox-fechar" title="Fechar" aria-label="Fechar">&times;</button>
+    <img src="" alt="Foto ampliada">
+  </div>
 
   <!-- configuração + dados por unidade + lógica (a ordem importa) -->
   <script src="js/dados/config.js"></script>

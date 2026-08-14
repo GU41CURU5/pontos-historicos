@@ -1,0 +1,5 @@
+Coloque aqui o logo (brasão) da 4ª Brigada de Cavalaria Mecanizada com este nome exato:
+  brasao-4bdacmec.png
+
+Recomendado: imagem quadrada, fundo transparente (PNG), pelo menos 200x200 px.
+Ela aparece no canto superior esquerdo do site, dentro do círculo do cabeçalho.
