@@ -169,20 +169,6 @@ main.mapa { grid-area: mapa; position: relative; min-height: 0; }
 }
 .btn-enquadrar:hover { background: var(--vinho); }
 
-.camadas-mapa {
-  position: absolute; right: 12px; top: 54px; z-index: 500;
-  display: flex; border: 1px solid var(--dourado); border-radius: 6px;
-  overflow: hidden; box-shadow: var(--sombra);
-}
-.camada-btn {
-  font-family: var(--fonte-titulo); letter-spacing: .5px; text-transform: uppercase;
-  font-size: 11px; color: #f4efe0; background: var(--vinho-escuro);
-  border: 0; padding: 7px 12px; cursor: pointer;
-}
-.camada-btn + .camada-btn { border-left: 1px solid var(--dourado); }
-.camada-btn:hover { background: var(--vinho); }
-.camada-btn.ativa { background: var(--dourado); color: var(--vinho-escuro); }
-
 .marcador { width: 22px; height: 22px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 2px solid #fff; box-shadow: 0 2px 5px rgba(0,0,0,.4); }
 
 /* ---------------------------- dossiê ------------------------------------ */
@@ -287,8 +273,6 @@ main.mapa { grid-area: mapa; position: relative; min-height: 0; }
   .detalhe { width: 100vw; }
   .legenda { left: 8px; bottom: 8px; padding: 8px 10px; font-size: 11px; }
   .btn-enquadrar { right: 8px; top: 8px; padding: 7px 10px; }
-  .camadas-mapa { right: 8px; top: 48px; }
-  .camada-btn { padding: 6px 10px; font-size: 10px; }
 
   .lightbox-nav { width: 40px; height: 40px; font-size: 24px; }
   .lightbox-anterior { left: 8px; }
