@@ -173,7 +173,7 @@ main.mapa { grid-area: mapa; position: relative; min-height: 0; }
 
 /* ---------------------------- dossiê ------------------------------------ */
 .detalhe {
-  position: absolute; top: 0; right: 0; bottom: 0; z-index: 900;
+  position: absolute; top: 0; right: 0; bottom: 0; z-index: 1010;
   width: min(440px, 90vw); background: var(--painel);
   box-shadow: -6px 0 24px rgba(27, 31, 24, .28);
   transform: translateX(105%); transition: transform .28s ease;

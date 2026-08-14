@@ -129,7 +129,10 @@ PONTOS.push(
     links: [
       { rotulo: "Hemeroteca BN – Revista da Semana (1926)", url: "https://hemeroteca-pdf.bn.gov.br/025909/per025909_1926_00024.pdf" }
     ],
-    fotos: [ "assets/fotos/11rc-mec/cabeceira-apa-01.jpg" ]
+    fotos: [
+      "assets/fotos/11rc-mec/cabeceira-apa-01.jpg",
+      "assets/fotos/11rc-mec/cabeceira-apa-02.jpg"
+    ]
   },
   {
     id: "monumento-antonio-joao",

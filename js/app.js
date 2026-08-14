@@ -31,7 +31,7 @@ PONTOS.forEach(p => {
     `<div class="popup-local">${escapar(p.cidade)}</div>` +
     `<button class="popup-btn" onclick="abrirDetalhe('${p.id}')">Ver dossiê</button>`
   );
-  m.on("click", () => selecionarItem(p.id, false));
+  m.on("click", () => selecionarItem(p.id, false, false));
   marcadores[p.id] = m;
   camadaMarcadores.addLayer(m);
 });
@@ -84,7 +84,7 @@ function renderLista(visiveis) {
 }
 
 /* -------------------------- seleção / dossiê ----------------------------- */
-function selecionarItem(id, voarAte) {
+function selecionarItem(id, voarAte, abrirDossie = true) {
   pontoAtivoId = id;
   const p = PONTOS.find(x => x.id === id); if (!p) return;
   document.querySelectorAll(".item").forEach(el => el.classList.toggle("ativo", el.dataset.id === id));
@@ -92,7 +92,7 @@ function selecionarItem(id, voarAte) {
     mapa.flyTo([p.lat, p.lng], 14, { duration: 0.8 });
     setTimeout(() => marcadores[p.id] && marcadores[p.id].openPopup(), 850);
   }
-  abrirDetalhe(id);
+  if (abrirDossie) abrirDetalhe(id);
   fecharMenu();
 }
 

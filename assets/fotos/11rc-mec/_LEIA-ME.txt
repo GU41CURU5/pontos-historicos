@@ -5,7 +5,7 @@ Fotos do 11º RC Mec (Ponta Porã e região). Nomes esperados:
   afresco-01.jpg, afresco-02.jpg
   museu-erva-mate-01.jpg, museu-erva-mate-02.jpg
   arroio-estrela-01.jpg
-  cabeceira-apa-01.jpg
+  cabeceira-apa-01.jpg, cabeceira-apa-02.jpg
   antonio-joao-01.jpg, antonio-joao-02.jpg
   cerro-cora-01.jpg, cerro-cora-02.jpg
   rincao-julio-01.jpg
