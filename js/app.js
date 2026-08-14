@@ -10,10 +10,31 @@ let pontoAtivoId = null;
 
 /* -------------------------- mapa ----------------------------------------- */
 const mapa = L.map("mapa", { zoomControl: true }).setView([-22.6, -55.4], 6);
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+
+const camadaMapaBase = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19, attribution: "&copy; colaboradores do OpenStreetMap"
-}).addTo(mapa);
+});
+const camadaTerreno = L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+  maxZoom: 19, maxNativeZoom: 17,
+  attribution: "&copy; colaboradores do OpenStreetMap &middot; SRTM | mapa: &copy; OpenTopoMap (CC-BY-SA)"
+});
+camadaMapaBase.addTo(mapa);
 camadaMarcadores.addTo(mapa);
+
+document.querySelectorAll(".camada-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    if (btn.classList.contains("ativa")) return;
+    document.querySelectorAll(".camada-btn").forEach(b => b.classList.remove("ativa"));
+    btn.classList.add("ativa");
+    if (btn.dataset.camada === "terreno") {
+      mapa.removeLayer(camadaMapaBase);
+      camadaTerreno.addTo(mapa);
+    } else {
+      mapa.removeLayer(camadaTerreno);
+      camadaMapaBase.addTo(mapa);
+    }
+  });
+});
 
 function iconeUnidade(unidadeKey) {
   const cor = (UNIDADES[unidadeKey] || {}).cor || "#666";
