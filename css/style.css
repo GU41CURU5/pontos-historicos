@@ -3,9 +3,9 @@
    ========================================================================== */
 
 :root {
-  --verde-campo: #23301c;
-  --oliva:       #3f5027;
-  --oliva-claro: #556b32;
+  --vinho-escuro: #3a0d13;
+  --vinho:        #6e1f28;
+  --vinho-claro:  #9c3a44;
   --areia:       #ece6d6;
   --painel:      #f5f1e6;
   --carvao:      #1b1f18;
@@ -32,7 +32,7 @@ body { display: flex; flex-direction: column; }
 }
 
 header.topo {
-  grid-area: topo; background: var(--verde-campo); color: #f4efe0;
+  grid-area: topo; background: var(--vinho-escuro); color: #f4efe0;
   display: flex; align-items: center; gap: 16px; padding: 12px 20px;
   border-bottom: 3px solid var(--dourado);
 }
@@ -73,7 +73,7 @@ header.topo .contador b { color: #fff; font-size: 18px; }
 
 /* ---------------------------- rodapé do site ----------------------------- */
 .rodape-site {
-  flex: 0 0 auto; min-height: 30px; background: var(--verde-campo); color: #d8d0ba;
+  flex: 0 0 auto; min-height: 30px; background: var(--vinho-escuro); color: #d8d0ba;
   border-top: 1px solid rgba(184,144,47,.5);
   display: flex; align-items: center; justify-content: center;
   font-size: 11.5px; letter-spacing: .3px; padding: 6px 0;
@@ -93,22 +93,22 @@ aside.lateral {
 .filtros { padding: 16px 16px 10px; border-bottom: 1px solid var(--linha); }
 .filtros .rotulo-secao {
   font-family: var(--fonte-titulo); font-size: 12px; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--oliva); margin: 0 0 8px;
+  text-transform: uppercase; color: var(--vinho); margin: 0 0 8px;
 }
 .busca {
   width: 100%; padding: 9px 12px; margin-bottom: 14px;
   border: 1px solid var(--linha); border-radius: 6px; background: #fff;
   font-size: 14px; font-family: var(--fonte-corpo);
 }
-.busca:focus { outline: 2px solid var(--oliva-claro); outline-offset: 1px; }
+.busca:focus { outline: 2px solid var(--vinho-claro); outline-offset: 1px; }
 
 .unidades { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
 .chip-unidade {
   display: flex; align-items: center; gap: 9px; padding: 7px 10px; border-radius: 6px;
   cursor: pointer; user-select: none; transition: background .12s;
 }
-.chip-unidade:hover { background: rgba(85, 107, 50, .09); }
-.chip-unidade input { accent-color: var(--oliva); width: 15px; height: 15px; }
+.chip-unidade:hover { background: rgba(156, 58, 68, .09); }
+.chip-unidade input { accent-color: var(--vinho); width: 15px; height: 15px; }
 .chip-unidade .selo { width: 12px; height: 12px; border-radius: 3px; flex: 0 0 auto; border: 1px solid rgba(0,0,0,.2); }
 .chip-unidade .nome { font-family: var(--fonte-titulo); font-size: 14px; letter-spacing: .6px; }
 .chip-unidade .qtd { margin-left: auto; font-size: 12px; color: var(--texto-sec); background: rgba(0,0,0,.05); border-radius: 10px; padding: 1px 8px; }
@@ -124,7 +124,7 @@ aside.lateral {
   border: 0; cursor: pointer; background: transparent; border-left: 4px solid transparent;
   border-bottom: 1px solid var(--linha); transition: background .1s;
 }
-.item:hover { background: rgba(85, 107, 50, .08); }
+.item:hover { background: rgba(156, 58, 68, .08); }
 .item.ativo { background: rgba(184, 144, 47, .14); border-left-color: var(--dourado); }
 .item .titulo { font-family: var(--fonte-titulo); font-size: 15px; letter-spacing: .4px; color: var(--carvao); line-height: 1.15; margin-bottom: 3px; }
 .item .meta { font-size: 12px; color: var(--texto-sec); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
@@ -137,14 +137,14 @@ aside.lateral {
 .rodape-lateral summary {
   cursor: pointer; list-style: none; padding: 10px 16px;
   font-family: var(--fonte-titulo); font-size: 12px; letter-spacing: 2px;
-  text-transform: uppercase; color: var(--oliva);
+  text-transform: uppercase; color: var(--vinho);
 }
 .rodape-lateral summary::-webkit-details-marker { display: none; }
-.rodape-lateral summary::after { content: "▸"; float: right; color: var(--oliva); }
+.rodape-lateral summary::after { content: "▸"; float: right; color: var(--vinho); }
 .rodape-lateral details[open] summary::after { content: "▾"; }
 #links-uteis { list-style: none; margin: 0; padding: 0 16px 10px; }
 #links-uteis li { padding: 4px 0; font-size: 12.5px; line-height: 1.35; }
-#links-uteis a { color: var(--oliva-claro); text-decoration: none; }
+#links-uteis a { color: var(--vinho-claro); text-decoration: none; }
 #links-uteis a:hover { text-decoration: underline; }
 
 /* ---------------------------- mapa -------------------------------------- */
@@ -156,18 +156,18 @@ main.mapa { grid-area: mapa; position: relative; min-height: 0; }
   background: rgba(245, 241, 230, .95); border: 1px solid var(--linha);
   border-radius: 8px; padding: 10px 12px; box-shadow: var(--sombra); font-size: 12px;
 }
-.legenda .rotulo-secao { font-family: var(--fonte-titulo); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--oliva); margin: 0 0 6px; }
+.legenda .rotulo-secao { font-family: var(--fonte-titulo); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--vinho); margin: 0 0 6px; }
 .legenda .linha-legenda { display: flex; align-items: center; gap: 8px; margin: 3px 0; }
 .legenda .selo { width: 11px; height: 11px; border-radius: 3px; border: 1px solid rgba(0,0,0,.2); }
 
 .btn-enquadrar {
   position: absolute; right: 12px; top: 12px; z-index: 500;
   font-family: var(--fonte-titulo); letter-spacing: 1px; text-transform: uppercase;
-  font-size: 12px; color: #f4efe0; background: var(--verde-campo);
+  font-size: 12px; color: #f4efe0; background: var(--vinho-escuro);
   border: 1px solid var(--dourado); border-radius: 6px; padding: 8px 12px;
   cursor: pointer; box-shadow: var(--sombra);
 }
-.btn-enquadrar:hover { background: var(--oliva); }
+.btn-enquadrar:hover { background: var(--vinho); }
 
 .marcador { width: 22px; height: 22px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 2px solid #fff; box-shadow: 0 2px 5px rgba(0,0,0,.4); }
 
@@ -180,7 +180,7 @@ main.mapa { grid-area: mapa; position: relative; min-height: 0; }
   display: flex; flex-direction: column;
 }
 .detalhe.aberto { transform: translateX(0); }
-.detalhe .cabecalho { background: var(--verde-campo); color: #f4efe0; padding: 16px 18px; border-bottom: 3px solid var(--dourado); position: relative; flex: 0 0 auto; }
+.detalhe .cabecalho { background: var(--vinho-escuro); color: #f4efe0; padding: 16px 18px; border-bottom: 3px solid var(--dourado); position: relative; flex: 0 0 auto; }
 .detalhe .cabecalho .faixa-unidade { display: inline-block; font-family: var(--fonte-titulo); font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #fff; padding: 2px 9px; border-radius: 4px; margin-bottom: 8px; }
 .detalhe .cabecalho h2 { font-family: var(--fonte-titulo); font-weight: 600; font-size: 22px; letter-spacing: .5px; margin: 0; line-height: 1.1; }
 .detalhe .cabecalho .local { font-size: 12px; color: #d8d0ba; margin-top: 4px; }
@@ -190,13 +190,13 @@ main.mapa { grid-area: mapa; position: relative; min-height: 0; }
 
 .ficha { list-style: none; padding: 0; margin: 0 0 14px; }
 .ficha li { display: flex; gap: 8px; padding: 5px 0; border-bottom: 1px dotted var(--linha); font-size: 13px; }
-.ficha .campo { font-family: var(--fonte-titulo); letter-spacing: .5px; text-transform: uppercase; font-size: 11px; color: var(--oliva); min-width: 92px; flex: 0 0 auto; padding-top: 1px; }
+.ficha .campo { font-family: var(--fonte-titulo); letter-spacing: .5px; text-transform: uppercase; font-size: 11px; color: var(--vinho); min-width: 92px; flex: 0 0 auto; padding-top: 1px; }
 .ficha .valor { color: var(--carvao); }
-.ficha .valor a { color: var(--oliva-claro); }
+.ficha .valor a { color: var(--vinho-claro); }
 
 .descricao { font-size: 14px; line-height: 1.6; color: #33372a; margin: 0 0 18px; }
 
-.rotulo-secao-detalhe { font-family: var(--fonte-titulo); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--oliva); border-bottom: 1px solid var(--linha); padding-bottom: 5px; margin: 4px 0 12px; }
+.rotulo-secao-detalhe { font-family: var(--fonte-titulo); font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--vinho); border-bottom: 1px solid var(--linha); padding-bottom: 5px; margin: 4px 0 12px; }
 
 .galeria { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 16px; }
 .galeria figure { margin: 0; border-radius: 8px; overflow: hidden; border: 1px solid var(--linha); background: #fff; }
@@ -208,11 +208,11 @@ main.mapa { grid-area: mapa; position: relative; min-height: 0; }
 .links-dossie { list-style: none; padding: 0; margin: 0 0 16px; }
 .links-dossie li { padding: 4px 0 4px 16px; position: relative; font-size: 13px; line-height: 1.35; }
 .links-dossie li::before { content: "↗"; position: absolute; left: 0; color: var(--dourado); }
-.links-dossie a { color: var(--oliva-claro); text-decoration: none; word-break: break-word; }
+.links-dossie a { color: var(--vinho-claro); text-decoration: none; word-break: break-word; }
 .links-dossie a:hover { text-decoration: underline; }
 
 .fontes { font-size: 12px; color: var(--texto-sec); line-height: 1.5; margin-bottom: 16px; }
-.fontes b { font-family: var(--fonte-titulo); letter-spacing: .5px; color: var(--oliva); }
+.fontes b { font-family: var(--fonte-titulo); letter-spacing: .5px; color: var(--vinho); }
 
 /* lightbox */
 .lightbox { position: fixed; inset: 0; z-index: 1200; background: rgba(20, 24, 16, .88); display: none; place-items: center; padding: 24px; }
@@ -224,14 +224,14 @@ main.mapa { grid-area: mapa; position: relative; min-height: 0; }
   background: rgba(27,31,24,.6); color: #f4efe0; font-size: 26px; line-height: 1;
   cursor: pointer; display: grid; place-items: center;
 }
-.lightbox-fechar:hover { background: var(--dourado); color: var(--verde-campo); }
+.lightbox-fechar:hover { background: var(--dourado); color: var(--vinho-escuro); }
 
 /* popup do leaflet */
 .leaflet-popup-content { margin: 10px 12px; }
 .popup-titulo { font-family: var(--fonte-titulo); font-size: 15px; letter-spacing: .4px; margin-bottom: 2px; }
 .popup-local { font-size: 12px; color: var(--texto-sec); margin-bottom: 8px; }
-.popup-btn { font-family: var(--fonte-titulo); letter-spacing: .8px; text-transform: uppercase; font-size: 11px; background: var(--oliva); color: #fff; border: 0; padding: 6px 12px; border-radius: 5px; cursor: pointer; }
-.popup-btn:hover { background: var(--verde-campo); }
+.popup-btn { font-family: var(--fonte-titulo); letter-spacing: .8px; text-transform: uppercase; font-size: 11px; background: var(--vinho); color: #fff; border: 0; padding: 6px 12px; border-radius: 5px; cursor: pointer; }
+.popup-btn:hover { background: var(--vinho-escuro); }
 
 /* ---------------------------- responsivo -------------------------------- */
 @media (max-width: 780px) {
