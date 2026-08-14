@@ -1,0 +1,57 @@
+name: "Adicionar ponto histórico"
+description: "Sugerir um novo ponto para o mapa."
+title: "[Novo ponto] "
+labels: ["ponto novo"]
+body:
+  - type: markdown
+    attributes:
+      value: "Preencha os campos abaixo. Quem administra o repositório fará o commit no arquivo da unidade correspondente."
+  - type: input
+    id: nome
+    attributes: { label: "Nome do ponto", placeholder: "Ex.: Monumento do Nhandipá" }
+    validations: { required: true }
+  - type: dropdown
+    id: unidade
+    attributes:
+      label: "Unidade"
+      options: ["3ª Bia AAAe", "10º RC Mec", "11º RC Mec", "17º RC Mec"]
+    validations: { required: true }
+  - type: input
+    id: cidade
+    attributes: { label: "Cidade / UF", placeholder: "Ex.: Bela Vista – MS" }
+  - type: input
+    id: categoria
+    attributes: { label: "Categoria", placeholder: "Ex.: Marco de fronteira" }
+  - type: input
+    id: periodo
+    attributes: { label: "Período / evento", placeholder: "Ex.: 1867 – Tríplice Aliança" }
+  - type: input
+    id: coordenadas
+    attributes: { label: "Coordenadas (lat, lng)", placeholder: "-22.53000, -55.73000" }
+    validations: { required: true }
+  - type: dropdown
+    id: precisao
+    attributes:
+      label: "Precisão da coordenada"
+      options: ["exata", "aproximada"]
+    validations: { required: true }
+  - type: input
+    id: endereco
+    attributes: { label: "Endereço" }
+  - type: textarea
+    id: descricao
+    attributes: { label: "Descrição (dossiê)" }
+    validations: { required: true }
+  - type: textarea
+    id: fontes
+    attributes: { label: "Fontes" }
+  - type: textarea
+    id: links
+    attributes:
+      label: "Links úteis"
+      placeholder: "Um por linha, no formato: Rótulo | https://..."
+  - type: textarea
+    id: fotos
+    attributes:
+      label: "Fotos"
+      description: "Arraste as imagens para cá. Elas serão anexadas ao ponto na hora do commit."

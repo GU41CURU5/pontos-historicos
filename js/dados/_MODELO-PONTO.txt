@@ -1,0 +1,26 @@
+MODELO DE PONTO — copie e cole dentro de PONTOS.push( ... ) no arquivo da unidade.
+
+  {
+    id: "identificador-unico",          // sem espaços, minúsculo, com hifens
+    unidade: "10rc",                    // 3bia | 10rc | 11rc | 17rc
+    nome: "Nome do ponto",
+    cidade: "Cidade – MS",
+    categoria: "Categoria (vira filtro)",
+    periodo: "Ano / evento",
+    lat: -22.53000, lng: -55.73000,     // graus decimais; Sul e Oeste são NEGATIVOS
+    precisao: "exata",                  // "exata" ou "aproximada"
+    endereco: "Endereço textual",
+    descricao: "Texto do dossiê.",
+    fontes: "Fonte 1; Fonte 2",
+    links: [
+      { rotulo: "Nome do link", url: "https://exemplo.org" }
+    ],
+    fotos: [
+      "assets/fotos/10rc-mec/arquivo-01.jpg"
+    ]
+  }
+
+Dicas:
+- Para pegar lat/lng: no Google Maps, clique com o botão direito no ponto e copie as coordenadas.
+- Fotos: coloque os arquivos em assets/fotos/<unidade>/ com exatamente os nomes listados em "fotos".
+- Se "links" ou "fotos" estiverem vazios, use [].

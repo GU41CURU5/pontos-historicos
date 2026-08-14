@@ -1,0 +1,22 @@
+name: "Corrigir / atualizar ponto"
+description: "Apontar uma correção em um ponto existente."
+title: "[Correção] "
+labels: ["correção"]
+body:
+  - type: input
+    id: ponto
+    attributes: { label: "Ponto", placeholder: "Nome do ponto a corrigir" }
+    validations: { required: true }
+  - type: dropdown
+    id: campo
+    attributes:
+      label: "O que corrigir?"
+      options: ["Coordenada", "Descrição", "Endereço", "Categoria / Período", "Fontes / Links", "Fotos", "Outro"]
+    validations: { required: true }
+  - type: textarea
+    id: correto
+    attributes: { label: "Valor correto / descrição da correção" }
+    validations: { required: true }
+  - type: input
+    id: fonte
+    attributes: { label: "Fonte da informação" }
