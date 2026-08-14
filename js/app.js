@@ -148,11 +148,11 @@ function renderGaleria(p) {
     alvo.innerHTML = `<div class="placeholder" style="grid-column:1/-1">Sem fotos cadastradas para este ponto.</div>`;
     return;
   }
-  fotos.forEach(caminho => {
+  fotos.forEach((caminho, indice) => {
     const fig = document.createElement("figure");
     const img = document.createElement("img");
     img.src = caminho; img.alt = p.nome;
-    img.addEventListener("click", () => abrirLightbox(caminho));
+    img.addEventListener("click", () => abrirLightbox(fotos, indice));
     img.addEventListener("error", () => {
       fig.innerHTML = `<div class="placeholder">Foto pendente<br><code>${escapar(caminho)}</code></div>`;
     });
@@ -160,14 +160,34 @@ function renderGaleria(p) {
   });
 }
 
-function abrirLightbox(src) {
+let galeriaLightbox = [];
+let indiceLightbox = 0;
+
+function abrirLightbox(fotos, indice) {
+  galeriaLightbox = fotos;
+  indiceLightbox = indice;
+  mostrarFotoLightbox();
+  document.getElementById("lightbox").classList.add("aberto");
+}
+function mostrarFotoLightbox() {
   const lb = document.getElementById("lightbox");
-  lb.querySelector("img").src = src; lb.classList.add("aberto");
+  lb.querySelector("img").src = galeriaLightbox[indiceLightbox];
+  lb.classList.toggle("varias-fotos", galeriaLightbox.length > 1);
+}
+function lightboxAnterior() {
+  indiceLightbox = (indiceLightbox - 1 + galeriaLightbox.length) % galeriaLightbox.length;
+  mostrarFotoLightbox();
+}
+function lightboxProxima() {
+  indiceLightbox = (indiceLightbox + 1) % galeriaLightbox.length;
+  mostrarFotoLightbox();
 }
 function fecharLightbox() { document.getElementById("lightbox").classList.remove("aberto"); }
 document.getElementById("lightbox").addEventListener("click", fecharLightbox);
 document.getElementById("lightbox").querySelector("img").addEventListener("click", e => e.stopPropagation());
 document.getElementById("lightbox-fechar").addEventListener("click", fecharLightbox);
+document.getElementById("lightbox-anterior").addEventListener("click", e => { e.stopPropagation(); lightboxAnterior(); });
+document.getElementById("lightbox-proxima").addEventListener("click", e => { e.stopPropagation(); lightboxProxima(); });
 
 /* -------------------------- filtros / legenda / links -------------------- */
 function montarFiltroUnidades() {
@@ -239,6 +259,9 @@ document.getElementById("busca").addEventListener("input", e => { estado.busca =
 document.getElementById("btn-enquadrar").addEventListener("click", enquadrarTudo);
 document.querySelector(".detalhe .fechar").addEventListener("click", fecharDetalhe);
 document.addEventListener("keydown", e => {
+  const lightboxAberto = document.getElementById("lightbox").classList.contains("aberto");
+  if (lightboxAberto && e.key === "ArrowLeft") { lightboxAnterior(); return; }
+  if (lightboxAberto && e.key === "ArrowRight") { lightboxProxima(); return; }
   if (e.key !== "Escape") return;
   fecharLightbox();
   fecharDetalhe();

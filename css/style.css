@@ -226,6 +226,17 @@ main.mapa { grid-area: mapa; position: relative; min-height: 0; }
 }
 .lightbox-fechar:hover { background: var(--dourado); color: var(--vinho-escuro); }
 
+.lightbox-nav {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 1210;
+  width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--dourado);
+  background: rgba(27,31,24,.6); color: #f4efe0; font-size: 30px; line-height: 1;
+  cursor: pointer; display: grid; place-items: center;
+}
+.lightbox-nav:hover { background: var(--dourado); color: var(--vinho-escuro); }
+.lightbox-anterior { left: 16px; }
+.lightbox-proxima { right: 16px; }
+.lightbox:not(.varias-fotos) .lightbox-nav { display: none; }
+
 /* popup do leaflet */
 .leaflet-popup-content { margin: 10px 12px; }
 .popup-titulo { font-family: var(--fonte-titulo); font-size: 15px; letter-spacing: .4px; margin-bottom: 2px; }
@@ -262,4 +273,8 @@ main.mapa { grid-area: mapa; position: relative; min-height: 0; }
   .detalhe { width: 100vw; }
   .legenda { left: 8px; bottom: 8px; padding: 8px 10px; font-size: 11px; }
   .btn-enquadrar { right: 8px; top: 8px; padding: 7px 10px; }
+
+  .lightbox-nav { width: 40px; height: 40px; font-size: 24px; }
+  .lightbox-anterior { left: 8px; }
+  .lightbox-proxima { right: 8px; }
 }
