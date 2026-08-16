@@ -30,7 +30,7 @@ PONTOS.forEach(p => {
   m.bindPopup(
     `<div class="popup-titulo">${escapar(p.nome)}</div>` +
     `<div class="popup-local">${escapar(p.cidade)}</div>` +
-    `<button class="popup-btn" onclick="abrirDetalhe('${p.id}')">Ver dossiê</button>`
+    `<button class="popup-btn" onclick="abrirDetalhe('${p.id}')">DETALHES</button>`
   );
   m.on("click", () => selecionarItem(p.id, false, false));
   marcadores[p.id] = m;
